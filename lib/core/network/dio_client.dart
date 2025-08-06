@@ -1,19 +1,15 @@
 import 'package:dio/dio.dart';
 
 class DioClient {
-  static Dio createDio() {
-    final dio = Dio(BaseOptions(
-      baseUrl: 'https://api.yankee.sn',
+  static Dio createDio(String baseUrl) {
+    return Dio(BaseOptions(
+      baseUrl: baseUrl,
       connectTimeout: const Duration(seconds: 30),
-    ));
-    
-    dio.interceptors.add(InterceptorsWrapper(
-      onRequest: (options, handler) {
-        // Ajouter le token d'authentification si disponible
-        return handler.next(options);
+      receiveTimeout: const Duration(seconds: 30),
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
       },
     ));
-    
-    return dio;
   }
 }

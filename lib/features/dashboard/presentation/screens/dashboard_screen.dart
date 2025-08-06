@@ -1,23 +1,29 @@
-// lib/features/dashboard/presentation/screens/dashboard_screen.dart
+import 'package:flutter/material.dart';
+
 class DashboardScreen extends StatelessWidget {
+  const DashboardScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Tableau de bord')),
-      body: Column(
+      appBar: AppBar(title: const Text('Tableau de bord')),
+      body: ListView(
         children: [
-          BlocBuilder<ProfileBloc, ProfileState>(
-            builder: (context, state) {
-              if (state is ProfileLoaded) {
-                return UserInfoCard(user: state.user);
-              }
-              return CircularProgressIndicator();
+          ListTile(
+            title: const Text('Mes commandes'),
+            onTap: () {
+              // Navigation vers les commandes
             },
           ),
-          // Autres widgets du dashboard
+          ListTile(
+            title: const Text('Mon portefeuille'),
+            onTap: () {
+              // Navigation vers le portefeuille
+            },
+          ),
+          // Ajoutez d'autres éléments du menu ici
         ],
       ),
-      bottomNavigationBar: const YankeeBottomNavBar(),
     );
   }
 }
